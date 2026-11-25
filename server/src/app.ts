@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
+import authRoutes from './modules/auth/auth.routes'
+
 const app = express()
 
 app.use(
@@ -20,6 +22,8 @@ if(!cookieSecret){
 }
 
 app.use(cookieParser(cookieSecret))
+
+app.use('/api/auth', authRoutes)
 
 app.get('/api/health', (req,res) => {
     res.json({

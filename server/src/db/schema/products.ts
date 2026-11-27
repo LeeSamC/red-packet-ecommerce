@@ -1,4 +1,4 @@
-import {pgTable,pgEnum, uuid, varchar, timestamp, integer} from 'drizzle-orm/pg-core'
+import {pgTable,pgEnum, uuid, varchar, timestamp, integer, numeric} from 'drizzle-orm/pg-core'
 import { users } from './users'
 import { categories } from './categories'
 
@@ -12,7 +12,7 @@ export const products = pgTable('products', {
     name: varchar('name', {length: 50}).notNull(),
     categoryId: uuid('category_id').notNull().references(() => categories.id, {onDelete: 'set null'}),
     ownerId: uuid('ownerId').notNull().references(() => users.id, {onDelete: 'cascade'}),
-    price: integer('price').notNull(),
+    price: numeric('price', {precision: 10, scale: 2}).notNull(),
     units: integer('unit').notNull(),
     status: productStatusEnum('status').notNull().default('out_of_stock'),
     createdAt: timestamp('created_at').notNull().defaultNow(),

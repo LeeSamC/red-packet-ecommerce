@@ -3,7 +3,7 @@ import { db } from "../../db";
 import { refreshTokens, users } from "../../db/schema";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import {hash, randomUUID} from 'node:crypto'
+import {randomUUID} from 'node:crypto'
 import { hashToken } from "../../utils/hashToken";
 
 type loginInput = {
